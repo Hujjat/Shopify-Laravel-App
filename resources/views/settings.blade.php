@@ -16,7 +16,7 @@
         var Button = actions.Button;
         var Redirect = actions.Redirect;
         var titleBarOptions = {
-            title: 'Dashboard',
+            title: 'Settings',
         };
         var myTitleBar = TitleBar.create(app, titleBarOptions);
     </script>

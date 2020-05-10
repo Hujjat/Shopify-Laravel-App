@@ -5,6 +5,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('shopify-app.app_name') }}</title>
+        <script src="https://unpkg.com/turbolinks"></script>
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         @yield('styles')
     </head>
@@ -27,7 +28,7 @@
                 var app = createApp({
                     apiKey: '{{ config('shopify-app.api_key') }}',
                     shopOrigin: '{{ Auth::user()->name }}',
-                    forceRedirect: true,
+                    forceRedirect: false,
                 });
             </script>
 
