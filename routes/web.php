@@ -33,9 +33,25 @@ Route::middleware(['auth.shopify'])->group(function () {
     {
         $shop = Auth::user();
 
-        $shopApi = $shop->api()->rest('GET', '/admin/themes.json')['body'];
+        $themes = $shop->api()->rest('GET', '/admin/themes.json');
 
-        return json_encode($shopApi);
+        // get active theme id
+        $activeThemeId = "";
+        foreach($themes['body']->container['themes'] as $theme){
+            if($theme['role'] == "main"){
+                $activeThemeId = $theme['id'];
+            }
+        }
+
+        $snippet = "Your snippet code";
+
+        // Data to pass to our rest api request
+        $array = array('asset' => array('key' => 'snippets/codeinspire-wishlist-app.liquid', 'value' => $snippet));
+
+        $shop->api()->rest('PUT', '/admin/themes/'.$activeThemeId.'/assets.json', $array);
+
+        return "Success";
+
     });
 
 
