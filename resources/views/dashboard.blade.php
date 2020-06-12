@@ -6,7 +6,7 @@
     <!-- This is an example component -->
  <div id="wrapper" class="container px-4 py-4 mx-auto">
 
-    {{-- @include('partials.activate-modal') --}}
+    @include('partials.activate-modal')
      <div class="sm:grid sm:h-32 sm:grid-flow-row sm:gap-4 sm:grid-cols-3">
 
         <x-status type="positive" title="Today's wishists" number="32" growth="9"/>
@@ -35,10 +35,15 @@
 
 
         function setupTheme(){
+           axios.post('configureTheme')
+                .then(function(response){
+                    console.log(response);
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
 
-            setTimeout(function(){
-                alert("Theme Configured !!");
-            }, 3000);
+
         }
     </script>
 @endsection
