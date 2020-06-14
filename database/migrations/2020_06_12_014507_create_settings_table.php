@@ -15,6 +15,7 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('shop_id')->unique();
             $table->boolean('activated');
             $table->timestamps();
         });

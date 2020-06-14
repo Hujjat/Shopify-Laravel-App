@@ -6,7 +6,9 @@
     <!-- This is an example component -->
  <div id="wrapper" class="container px-4 py-4 mx-auto">
 
-    @include('partials.activate-modal')
+    @if (!$settings->activated)
+        @include('partials.activate-modal')
+    @endif
      <div class="sm:grid sm:h-32 sm:grid-flow-row sm:gap-4 sm:grid-cols-3">
 
         <x-status type="positive" title="Today's wishists" number="32" growth="9"/>
