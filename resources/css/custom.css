@@ -1,3 +1,12 @@
-body{
-    color:red;
+.codeinspire-wishlist-btn{
+    background-color: transparent;
+    color: #000;
+    border: 1px solid;
+    padding: 0.6rem 1.2rem;
+    border-radius: 3px;
+}
+
+.codeinspire-wishlist-btn.active{
+    background-color: #3a3a3a;
+    color: #fff;
 }

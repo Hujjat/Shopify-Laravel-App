@@ -98,7 +98,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "body{\n  color:red;\n}\n", ""]);
+exports.push([module.i, ".codeinspire-wishlist-btn{\n  background-color: transparent;\n  color: #000;\n  border: 1px solid;\n  padding: 0.6rem 1.2rem;\n  border-radius: 3px;\n}\n\n.codeinspire-wishlist-btn.active{\n  background-color: #3a3a3a;\n  color: #fff;\n}\n", ""]);
 
 // exports
 
@@ -743,6 +743,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_custom_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/custom.css */ "./resources/css/custom.css");
 /* harmony import */ var _css_custom_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_custom_css__WEBPACK_IMPORTED_MODULE_0__);
 
+
+function addWishlist() {
+  console.log("Adding item wishlist");
+}
+
+function removeWishlist() {
+  console.log("Remove item wishlist");
+}
+
+var wishlistButton = document.querySelector('.codeinspire-wishlist-btn');
+wishlistButton.addEventListener('click', function () {
+  if (this.classList.contains('active')) {
+    removeWishlist();
+    this.classList.remove('active');
+  } else {
+    this.classList.add('active');
+    addWishlist();
+  }
+});
 
 /***/ }),
 
