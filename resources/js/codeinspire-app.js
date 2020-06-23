@@ -1,15 +1,31 @@
 
 import "../css/custom.css";
+require("noty/src/noty.scss");
+require("noty/src/themes/mint.scss");
+
+window.Noty = require('noty');
 
 
-function addWishlist() {
-    console.log("Adding item wishlist");
+
+function addWishlist(customer, product_id) {
+    new Noty({
+        type: 'success',
+        layout: 'topRight',
+        timeout: 3000,
+        text: 'Added to wishlist'
+    }).show();
+
+    // ajax
 }
 
 
 function removeWishlist() {
-    console.log("Remove item wishlist");
-    // send https request
+     new Noty({
+        type: 'warning',
+        layout: 'topRight',
+        timeout: 3000,
+        text: 'Removed from wishlist'
+    }).show();
 }
 
 var wishlistButton = document.querySelector('.codeinspire-wishlist-btn');
@@ -23,7 +39,11 @@ wishlistButton.addEventListener('click', function () {
 
     }else{
         this.classList.add('active');
-        addWishlist();
+        var customer = this.dataset.customer;
+        var id = this.dataset.product;
+
+        // console.log('This: ', this.dataset.product );
+        addWishlist(customer, id );
 
     }
 
