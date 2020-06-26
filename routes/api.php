@@ -20,5 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('addToWishlist', 'WishlistController@store');
+Route::post('removeWishlist', 'WishlistController@destroy');
 
 
