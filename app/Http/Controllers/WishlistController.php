@@ -37,7 +37,8 @@ class WishlistController extends Controller
     {
         //
 
-        Wishlist::create($request->all());
+
+        Wishlist::updateOrCreate($request->all());
 
         return "Success";
     }
