@@ -4,16 +4,27 @@ require("noty/src/noty.scss");
 require("noty/src/themes/mint.scss");
 
 window.Noty = require('noty');
+window.axios = require('axios');
 
-
+const appDomain = "https://wishlist-inspire.test";
 
 function addWishlist(customer, product_id) {
-    new Noty({
-        type: 'success',
-        layout: 'topRight',
-        timeout: 3000,
-        text: 'Added to wishlist'
-    }).show();
+
+    axios.post(appDomain+'/api/addToWishlist', {shop_id: Shopify.shop,customer_id: customer, product_id: product_id })
+        .then(response => {
+            console.log("Response: ", response);
+        })
+        .catch( error => {
+            console.log("ERROR: ", error);
+        });
+
+
+    // new Noty({
+    //     type: 'success',
+    //     layout: 'topRight',
+    //     timeout: 3000,
+    //     text: 'Added to wishlist'
+    // }).show();
 
     // ajax
 }
