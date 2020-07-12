@@ -8,6 +8,9 @@ window.axios = require('axios');
 
 const appDomain = "https://wishlist-inspire.test";
 
+var wishlistButton = document.querySelector('.codeinspire-wishlist-btn');
+
+
 function addWishlist(customer, product_id) {
 
     axios.post(appDomain+'/api/addToWishlist', {shop_id: Shopify.shop,customer_id: customer, product_id: product_id })
@@ -49,7 +52,21 @@ function removeWishlist(customer, product_id) {
     // }).show();
 }
 
-var wishlistButton = document.querySelector('.codeinspire-wishlist-btn');
+function checkWishlist(customer, product_id) {
+
+
+    axios.post(appDomain+'/api/checkWishlist', {shop_id: Shopify.shop,customer_id: customer, product_id: product_id })
+        .then(response => {
+            if (response.data == 1) {
+                wishlistButton.classList.add('active');
+            }
+        })
+        .catch( error => {
+            console.log("ERROR: ", error);
+        });
+
+}
+
 
 wishlistButton.addEventListener('click', function () {
 
@@ -68,3 +85,12 @@ wishlistButton.addEventListener('click', function () {
     }
 
 })
+
+if (wishlistButton) {
+    var customer = wishlistButton.dataset.customer;
+    var id = wishlistButton.dataset.product;
+
+    checkWishlist(customer,id);
+
+}
+

@@ -5985,6 +5985,7 @@ __webpack_require__(/*! noty/src/themes/mint.scss */ "./node_modules/noty/src/th
 window.Noty = __webpack_require__(/*! noty */ "./node_modules/noty/lib/noty.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 var appDomain = "https://wishlist-inspire.test";
+var wishlistButton = document.querySelector('.codeinspire-wishlist-btn');
 
 function addWishlist(customer, product_id) {
   axios.post(appDomain + '/api/addToWishlist', {
@@ -6021,7 +6022,20 @@ function removeWishlist(customer, product_id) {
   // }).show();
 }
 
-var wishlistButton = document.querySelector('.codeinspire-wishlist-btn');
+function checkWishlist(customer, product_id) {
+  axios.post(appDomain + '/api/checkWishlist', {
+    shop_id: Shopify.shop,
+    customer_id: customer,
+    product_id: product_id
+  }).then(function (response) {
+    if (response.data == 1) {
+      wishlistButton.classList.add('active');
+    }
+  })["catch"](function (error) {
+    console.log("ERROR: ", error);
+  });
+}
+
 wishlistButton.addEventListener('click', function () {
   var customer = this.dataset.customer;
   var id = this.dataset.product;
@@ -6035,6 +6049,12 @@ wishlistButton.addEventListener('click', function () {
     addWishlist(customer, id);
   }
 });
+
+if (wishlistButton) {
+  var customer = wishlistButton.dataset.customer;
+  var id = wishlistButton.dataset.product;
+  checkWishlist(customer, id);
+}
 
 /***/ }),
 

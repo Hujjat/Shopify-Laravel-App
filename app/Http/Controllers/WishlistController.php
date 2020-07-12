@@ -91,4 +91,23 @@ class WishlistController extends Controller
 
         return Wishlist::destroy($item->id);
     }
+
+    /**
+     * Check the specified resource from storage.
+     *
+     * @param  \App\Wishlist  $wishlist
+     * @return \Illuminate\Http\Response
+     */
+    public function check(Request $request)
+    {
+        //
+
+        $item = Wishlist::where('shop_id', $request['shop_id'])->where('customer_id', $request['customer_id'])->where('product_id', $request['product_id'])->first();
+
+        if($item){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
 }
