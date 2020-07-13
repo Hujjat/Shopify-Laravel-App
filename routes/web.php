@@ -1,8 +1,9 @@
 <?php
 
 use App\Setting;
-use Illuminate\Support\Facades\Route;
+use App\Wishlist;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 
 /*
@@ -39,5 +40,6 @@ Route::middleware(['auth.shopify'])->group(function () {
 
     Route::post('configureTheme', "SettingController@configureTheme");
 
-
 });
+
+Route::get('wishlists', "WishlistController@index")->name('wishlists');
