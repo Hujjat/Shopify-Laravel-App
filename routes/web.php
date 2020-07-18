@@ -33,6 +33,7 @@ Route::middleware(['auth.shopify'])->group(function () {
     })->name('home');
 
 
+    Route::get('wishlists', "WishlistController@index")->name('wishlists');
 
     Route::view('/products', 'products');
     Route::view('/customers', 'customers');
@@ -42,4 +43,3 @@ Route::middleware(['auth.shopify'])->group(function () {
 
 });
 
-Route::get('wishlists', "WishlistController@index")->name('wishlists');
