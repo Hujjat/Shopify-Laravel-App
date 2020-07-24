@@ -1,5 +1,5 @@
 
-<table class="table-auto w-full">
+<table class="table-auto w-full bg-white ">
     <thead>
       <tr>
         <th class="px-4 py-2 text-left">Product</th>
